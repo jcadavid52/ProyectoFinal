@@ -1,0 +1,100 @@
+﻿@model IEnumerable<ProyectoFinal.Models.CATEGORIA>
+@{
+    ViewBag.Title = "EspacioVirtual";
+}
+
+
+<h2>EspacioVirtual</h2>
+
+<h3>Publica tu usuario para hacer parte de la comunidad</h3>
+<form action="@Url.Action("PublicarUsuario")" method="post">
+    <label>Nombre</label>
+    <br />
+    <input type="text" name="NOMBRE_USUARIO" value="" /><br /><br />
+
+    <label>Apellidos</label>
+    <br />
+    <input type="text" name="APELLIDO_USUARIO" value="" />
+    <br />
+    <br />
+
+    <label>Teléfono</label>
+    <br />
+    <input type="text" name="TELEFONO" value="" />
+    <br />
+    <br />
+
+    <label>Celular</label>
+    <br />
+    <input type="text" name="CELULAR" value="" />
+    <br />
+    <br />
+    <label>Correo</label>
+    <br />
+    <input type="text" name="CORREO" value="" />
+    <br />
+    <br />
+    <label>País</label>
+    <br />
+    <input type="text" name="PAIS" value="" />
+    <br />
+    <br />
+
+    <input type="text" name="FK_SESION" value="@Session["ID"]" />
+    <br />
+    <br />
+    <input type="submit" name="name" value="Unirse a la comunidad" />
+</form>
+<div>@ViewBag.Mensaje</div>
+
+
+<form action="@Url.Action("EspacioVirtualAccion")" method="post">
+</form>
+<h3>Agrega tutoriales y muestra tu talento</h3>
+<br />
+<br />
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<form action="@Url.Action("EspacioVirtualAccion")" method="post">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label>Seleccione categoría</label>
+                    <select name="FK_CATEGORIA">
+                        @foreach (var categoria in Model)
+                        {
+                            <option value="@Html.DisplayFor(c => categoria.ID_CATEGORIA)">@Html.DisplayFor(c => categoria.NOMBRE_CATEGORIA)</option>
+                        }
+                    </select><br /><br />
+
+                    <label>Nombre de la obra</label><br />
+                    <input type="text" name="NOMBRE_PRODUCTO" value="" /><br /><br />
+
+                    <label>Precio</label><br />
+                    <input type="text" name="PRECIO" value="" /><br /><br />
+
+                    <label>Descripción</label><br />
+                    <input type="text" name="DESCRIPCION" value="" /><br /><br />
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" value="Publicar" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

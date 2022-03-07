@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Registro";
+}
+
+<h2>Registro</h2>
+
+<form action="@Url.Action("RegistroAccion")" method="post">
+    <label>Correo</label><br />
+    <input type="email" name="usuario" value="" /><br />
+    <label>Contraseña</label><br />
+    <input type="password" name="clave" value="" /><br /><br />
+    <input type="submit"  value="Registrarse" /><br />
+    <label>@ViewBag.Mensaje</label>
+
+</form>

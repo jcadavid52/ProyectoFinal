@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8d60e462d34742f3af7b026c5624e280" Name="Diagram1">
+        <EntityTypeShape EntityType="BD_PROYECTO_FINALModel.CATEGORIA" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_PROYECTO_FINALModel.CLIENTE" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_PROYECTO_FINALModel.PEDIDO" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_PROYECTO_FINALModel.PRODUCTO" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_PROYECTO_FINALModel.SESION" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_PROYECTO_FINALModel.USUARIO" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="BD_PROYECTO_FINALModel.FK__PRODUCTO__FK_CAT__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_PROYECTO_FINALModel.FK__PEDIDO__FK_CLIEN__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_PROYECTO_FINALModel.FK__PRODUCTO__FK_PED__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_PROYECTO_FINALModel.FK__PRODUCTO__FK_USU__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_PROYECTO_FINALModel.FK__USUARIO__FK_SESI__656C112C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

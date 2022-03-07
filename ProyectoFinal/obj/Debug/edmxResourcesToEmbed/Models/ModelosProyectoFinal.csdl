@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BD_PROYECTO_FINALModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CATEGORIA">
+    <Key>
+      <PropertyRef Name="ID_CATEGORIA" />
+    </Key>
+    <Property Name="ID_CATEGORIA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOMBRE_CATEGORIA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK__PRODUCTO__FK_CAT__72C60C4A" FromRole="CATEGORIA" ToRole="PRODUCTO" />
+  </EntityType>
+  <EntityType Name="CLIENTE">
+    <Key>
+      <PropertyRef Name="ID_CLIENTE" />
+    </Key>
+    <Property Name="ID_CLIENTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOMBRE_CLIENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="APELLIDO_CLIENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFONO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CELULAR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CORREO" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PEDIDO" Relationship="Self.FK__PEDIDO__FK_CLIEN__6EF57B66" FromRole="CLIENTE" ToRole="PEDIDO" />
+  </EntityType>
+  <EntityType Name="PEDIDO">
+    <Key>
+      <PropertyRef Name="ID_PEDIDO" />
+    </Key>
+    <Property Name="ID_PEDIDO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ESTADO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PRECIO_TOTAL" Type="Double" />
+    <Property Name="FECHA_ENTREGA" Type="DateTime" Precision="0" />
+    <Property Name="FECHA_PEDIDO" Type="DateTime" Precision="3" />
+    <Property Name="DETALLE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CANTIDAD" Type="Int32" />
+    <Property Name="FK_CLIENTE" Type="Int32" />
+    <NavigationProperty Name="CLIENTE" Relationship="Self.FK__PEDIDO__FK_CLIEN__6EF57B66" FromRole="PEDIDO" ToRole="CLIENTE" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK__PRODUCTO__FK_PED__71D1E811" FromRole="PEDIDO" ToRole="PRODUCTO" />
+  </EntityType>
+  <EntityType Name="PRODUCTO">
+    <Key>
+      <PropertyRef Name="ID_PRODUCTO" />
+    </Key>
+    <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOMBRE_PRODUCTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PRECIO" Type="Double" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="FK_PEDIDO" Type="Int32" />
+    <Property Name="FK_CATEGORIA" Type="Int32" />
+    <Property Name="FK_USUARIO" Type="Int32" />
+    <NavigationProperty Name="CATEGORIA" Relationship="Self.FK__PRODUCTO__FK_CAT__72C60C4A" FromRole="PRODUCTO" ToRole="CATEGORIA" />
+    <NavigationProperty Name="PEDIDO" Relationship="Self.FK__PRODUCTO__FK_PED__71D1E811" FromRole="PRODUCTO" ToRole="PEDIDO" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK__PRODUCTO__FK_USU__73BA3083" FromRole="PRODUCTO" ToRole="USUARIO" />
+  </EntityType>
+  <EntityType Name="SESION">
+    <Key>
+      <PropertyRef Name="ID_SESION" />
+    </Key>
+    <Property Name="ID_SESION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USUARIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CLAVE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="USUARIO1" Relationship="Self.FK__USUARIO__FK_SESI__656C112C" FromRole="SESION" ToRole="USUARIO" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="ID_USUARIO" />
+    </Key>
+    <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOMBRE_USUARIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="APELLIDO_USUARIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFONO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CELULAR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CORREO" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="PAIS" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="FK_SESION" Type="Int32" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK__PRODUCTO__FK_USU__73BA3083" FromRole="USUARIO" ToRole="PRODUCTO" />
+    <NavigationProperty Name="SESION" Relationship="Self.FK__USUARIO__FK_SESI__656C112C" FromRole="USUARIO" ToRole="SESION" />
+  </EntityType>
+  <Association Name="FK__PRODUCTO__FK_CAT__72C60C4A">
+    <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="0..1" />
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIA">
+        <PropertyRef Name="ID_CATEGORIA" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="FK_CATEGORIA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PEDIDO__FK_CLIEN__6EF57B66">
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+    <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="ID_CLIENTE" />
+      </Principal>
+      <Dependent Role="PEDIDO">
+        <PropertyRef Name="FK_CLIENTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PRODUCTO__FK_PED__71D1E811">
+    <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="0..1" />
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEDIDO">
+        <PropertyRef Name="ID_PEDIDO" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="FK_PEDIDO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PRODUCTO__FK_USU__73BA3083">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="FK_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USUARIO__FK_SESI__656C112C">
+    <End Role="SESION" Type="Self.SESION" Multiplicity="0..1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SESION">
+        <PropertyRef Name="ID_SESION" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="FK_SESION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BD_PROYECTO_FINALEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" />
+    <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" />
+    <EntitySet Name="PEDIDO" EntityType="Self.PEDIDO" />
+    <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" />
+    <EntitySet Name="SESION" EntityType="Self.SESION" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+    <AssociationSet Name="FK__PRODUCTO__FK_CAT__72C60C4A" Association="Self.FK__PRODUCTO__FK_CAT__72C60C4A">
+      <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PEDIDO__FK_CLIEN__6EF57B66" Association="Self.FK__PEDIDO__FK_CLIEN__6EF57B66">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="PEDIDO" EntitySet="PEDIDO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PRODUCTO__FK_PED__71D1E811" Association="Self.FK__PRODUCTO__FK_PED__71D1E811">
+      <End Role="PEDIDO" EntitySet="PEDIDO" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PRODUCTO__FK_USU__73BA3083" Association="Self.FK__PRODUCTO__FK_USU__73BA3083">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USUARIO__FK_SESI__656C112C" Association="Self.FK__USUARIO__FK_SESI__656C112C">
+      <End Role="SESION" EntitySet="SESION" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <FunctionImport Name="REGISTRAR_USER">
+      <Parameter Name="USUARIO" Mode="In" Type="String" />
+      <Parameter Name="CLAVE" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USP_PUBLICAR_USER">
+      <Parameter Name="NOMBRE_USUARIO" Mode="In" Type="String" />
+      <Parameter Name="APELLIDO_USUARIO" Mode="In" Type="String" />
+      <Parameter Name="TELEFONO" Mode="In" Type="String" />
+      <Parameter Name="CELULAR" Mode="In" Type="String" />
+      <Parameter Name="CORREO" Mode="In" Type="String" />
+      <Parameter Name="PAIS" Mode="In" Type="String" />
+      <Parameter Name="FK_SESION" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>
